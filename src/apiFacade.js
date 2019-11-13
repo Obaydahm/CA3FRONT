@@ -53,6 +53,11 @@ class ApiFacade {
         this.setToken(res.token);
       });
   };
+
+  fetchPosts = () => {
+    const options = this.makeOptions("GET", false); //True add's the token
+    return fetch(URL + "/api/server/all", options).then(handleHttpErrors)
+  }
 }
 const facade = new ApiFacade();
 export default facade;
