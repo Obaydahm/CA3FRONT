@@ -10,14 +10,13 @@ function LogIn(props) {
     setUser({ ...user });
   };
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="wrapper">
       <form onSubmit={login} onChange={onChange}>
-        <input placeholder="User Name" id="username" />
-        <input placeholder="Password" id="password" />
+        <h1>Login</h1>
+        <input placeholder="User Name" id="username" /><br />
+        <input placeholder="Password" id="password" /><br />
         <button>Login</button>
       </form>
-      {JSON.stringify(user)}
     </div>
   );
 }

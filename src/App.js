@@ -27,7 +27,7 @@ function App() {
             {!loggedIn ? (
               <LogIn login={login} />
             ) : (
-                <div>
+                <div className="wrapper">
                   <LoggedIn />
                   <button onClick={logout}>Logout</button>
                 </div>
@@ -44,8 +44,8 @@ function App() {
 const Header = () => {
   return (
     <ul className="menu">
-      <li><NavLink to="/">Home</NavLink></li>
-      <li><NavLink to="/posts">Post</NavLink></li>
+      <li><NavLink to="/" exact activeClassName="active">Home</NavLink></li>
+      <li><NavLink to="/posts" activeClassName="active">Post</NavLink></li>
     </ul>
   );
 }

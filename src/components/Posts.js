@@ -9,10 +9,9 @@ function Posts(props) {
     }, [facade]);
 
     return (
-        <div>
-            <h1>Data</h1>
-
+        <div className="wrapper">
             <table>
+                <h1>Data</h1>
                 <tbody>
                     <tr>
                         <td><b>ID</b></td>
