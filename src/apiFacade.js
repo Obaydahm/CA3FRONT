@@ -7,6 +7,23 @@ function handleHttpErrors(res) {
 }
 
 class ApiFacade {
+
+  /*
+    Rolerne bliver hentet i login funktionen.
+    Derefter tjekker vi, i fetchData funktioner, hvilken role en bruger har.
+    Også fetcher vi fra det endpoint som kun kan tilgås med den givne role.
+
+    Har en fornemmelse at det ikke er den bedste løsning.
+    Prøv at se om du kan optimere den.
+
+    Den er dog ikke helt færdig, da der ikke tages højde for om en bruger har flere roller.
+    Faden kalder, vi tjales.
+    
+
+    
+  */
+  roles = [0];
+
   setToken = token => {
     localStorage.setItem("jwtToken", token);
   };
@@ -37,10 +54,13 @@ class ApiFacade {
     }
     return opts;
   }
+
   fetchData = () => {
+    const urlFetch = (this.roles.includes("user") ? "/api/info/user" : "/api/info/admin");
     const options = this.makeOptions("GET", true); //True add's the token
-    return fetch(URL + "/api/info/user", options).then(handleHttpErrors);
+    return fetch(URL + urlFetch, options).then(handleHttpErrors);
   };
+
   login = (user, pass) => {
     const options = this.makeOptions("POST", true, {
       username: user,
@@ -51,6 +71,7 @@ class ApiFacade {
       .then(handleHttpErrors)
       .then(res => {
         this.setToken(res.token);
+        this.roles = res.roles;
       });
   };
 
