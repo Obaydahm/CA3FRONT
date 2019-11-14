@@ -1,4 +1,4 @@
-const URL = "http://localhost:8080/ca3-back";
+const URL = "https://sinanjasar.dk/CA3";
 function handleHttpErrors(res) {
   if (!res.ok) {
     return Promise.reject({ status: res.status, fullError: res.json() });
